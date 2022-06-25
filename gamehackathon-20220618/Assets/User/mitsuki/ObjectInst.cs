@@ -12,6 +12,7 @@ public class ObjectInst : MonoBehaviour
     private bool process = false;
 
     private int rnd = 0;
+    [SerializeField] private float m_RecastTime=0.0f;
     // Update is called once per frame
     void Update()
     {
@@ -49,7 +50,7 @@ public class ObjectInst : MonoBehaviour
             }
 
 
-                    yield return new WaitForSeconds(1.0f);
+                    yield return new WaitForSeconds(m_RecastTime);
             //
             process = false;
 
