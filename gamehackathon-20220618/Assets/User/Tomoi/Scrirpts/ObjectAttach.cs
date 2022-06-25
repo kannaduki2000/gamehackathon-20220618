@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+[RequireComponent(typeof(RectTransform))]
 public class ObjectAttach : MonoBehaviour
 {
     [FormerlySerializedAs("MoveSpeed")] [SerializeField]
@@ -8,23 +10,31 @@ public class ObjectAttach : MonoBehaviour
     [FormerlySerializedAs("DestroyDisplayPosition")] [SerializeField]
     private float destroyDisplayPosition = 0f;
 
+    private RectTransform _rectTransform;
+    
     /// <summary>
     /// マウスでつかんでいる状態
     /// つかんでいる状態がtrue
     /// </summary>
-    private bool isHold = false; 
+    private bool isHold = false;
+
+    private void Start()
+    {
+        _rectTransform = GetComponent<RectTransform>();
+    }
 
     void Update()
     {
-        Vector3 newPosition = transform.position;
+        Vector3 newPosition = _rectTransform.position;
         if (!isHold)
         {
             newPosition.y += -moveSpeed * Time.deltaTime ;
-            transform.position = newPosition;
+            _rectTransform.position = newPosition;
         }
         
+        Debug.Log(_rectTransform.position.y);
         //オブジェクトがdestroyDisplayPositionより下に移動したら削除
-        if (transform.position.y < destroyDisplayPosition)
+        if (_rectTransform.position.y < destroyDisplayPosition)
         {
             Destroy(gameObject);
         }
