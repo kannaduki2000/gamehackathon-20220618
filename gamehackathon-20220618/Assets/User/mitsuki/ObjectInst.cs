@@ -16,7 +16,7 @@ public class ObjectInst : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 1; i < 10; i++)
         {
             StartCoroutine(InstObj());
         }
@@ -28,7 +28,7 @@ public class ObjectInst : MonoBehaviour
         {
             process = true;
             rnd = Random.Range(0, 4);
-            Debug.Log(rnd);
+            //Debug.Log(rnd);
             switch (rnd)
             {
                 case 0:
@@ -56,4 +56,5 @@ public class ObjectInst : MonoBehaviour
 
         }
     }
+
 }
